@@ -22,40 +22,8 @@ namespace aoaifunctions.Helpers
         {
 
         }
-        //static string key = "9f4d0240980a416c9ac4996342e7bc43";
-        //static string endpoint = "https://jschaffeopenai.openai.azure.com/";
-        //static string key = "bced092b215a4768bcabe21028e00719";
-        //static string endpoint = "https://openaikesteph.openai.azure.com/";
-        static string key = "8917f9dbe60b4d709ba1ff12aad7b6ad";
-        static string endpoint = "https://rapidopenai.openai.azure.us/";
+
         string completion = "";
-
-        //public string GetPromptResponse(string prompt)
-        //{
-        //    OpenAIClient client = new OpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
-        //    if (prompt != "")
-        //    {
-        //        try
-        //        {
-        //            ChatCompletionOptions completionsOptions = new ChatCompletionOptions
-        //            {
-
-        //                //DeploymentName = "gpt-4-1106preview",
-        //                DeploymentName = "davinci-summary",
-        //                //DeploymentName = "gpt35turbo",
-        //                Prompts = { prompt },
-        //                MaxTokens = 1000
-        //            };
-        //            Response<Completions> completionsResponse = client.GetCompletions(completionsOptions);
-        //            completion = completionsResponse.Value.Choices[0].Text;
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            completion = ex.Message;
-        //        }
-        //    }
-        //    return completion;
-        //}
 
         public SkillResponse GetFlightData(string data)
         {
@@ -70,7 +38,6 @@ namespace aoaifunctions.Helpers
                     if (val.data.SourceName.Equals("PARIS", StringComparison.InvariantCultureIgnoreCase))
                     {
                         OpenAIHelper openAI = new OpenAIHelper();
-                        //returnValue = openAI.GetPromptResponse($"{prompt} {contentDelimiter} {val.data.DisplaySummary} {contentDelimiter}");
                         returnValue = openAI.GetChatPromptResponse($"{prompt} {contentDelimiter} {val.data.DisplaySummary} {contentDelimiter}");
                         if (IsJson(returnValue))
                         {
@@ -130,8 +97,12 @@ namespace aoaifunctions.Helpers
 
         public string GetChatPromptResponse(string prompt)
         {
-            AzureOpenAIClient aiClient = new AzureOpenAIClient(new Uri(endpoint), new AzureKeyCredential(key));
-            ChatClient client = aiClient.GetChatClient("gpt-4");
+            var openAiUrl = ConfigHelper.GetConfigSetting("OpenAiUrl");
+            var openAiKey = ConfigHelper.GetConfigSetting("OpenAiKey");
+            var openAiModelName = ConfigHelper.GetConfigSetting("OpenAiModelName");
+
+            AzureOpenAIClient aiClient = new AzureOpenAIClient(new Uri(openAiUrl), new AzureKeyCredential(openAiKey));
+            ChatClient client = aiClient.GetChatClient(openAiModelName);
             if (prompt != "")
             {
                 try
