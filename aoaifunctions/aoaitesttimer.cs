@@ -12,7 +12,7 @@ namespace aoaifunctions
     public class aoaitesttimer
     {
         [FunctionName("aoaitesttimer")]
-        public void Run([TimerTrigger("0 */5 * * * *")]TimerInfo myTimer, ILogger log)
+        public void Run([TimerTrigger("0 0 * * * *")]TimerInfo myTimer, ILogger log)
         {
             log.LogInformation("AOAI Timer Function Test is being executed...");
 
