@@ -27,7 +27,7 @@ namespace aoaifunctions
                 log.LogInformation($"{data}");
 
                 OpenAIHelper openAIHelper = new OpenAIHelper();
-                var response = openAIHelper.GetFlightData(data);
+                var response = openAIHelper.GetAllData(data);
 
                 log.LogInformation(JsonHelper.Serializer<SkillResponse>(response));
             }

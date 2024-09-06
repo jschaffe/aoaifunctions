@@ -10,5 +10,7 @@ namespace aoaifunctions.ResponseEntities
         //public string FlightDepartureAirport { get; set; }
         //public string FlightPath { get; set; }
         public string FlightData { get; set; }
+
+        public string ThreatData {  get; set; }
     }
 }

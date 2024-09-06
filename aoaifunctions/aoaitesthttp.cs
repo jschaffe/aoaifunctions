@@ -29,7 +29,7 @@ namespace aoaifunctions
             log.LogInformation(requestBody);
 
             OpenAIHelper openAIHelper = new OpenAIHelper();
-            var response = openAIHelper.GetFlightData(requestBody);
+            var response = openAIHelper.GetAllData(requestBody);
 
             var httpResponse = new HttpResponseMessage(HttpStatusCode.OK);
             httpResponse.Content = new StringContent(JsonHelper.Serializer<SkillResponse>(response), System.Text.Encoding.UTF8, "application/json");
