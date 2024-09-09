@@ -52,7 +52,7 @@ namespace aoaifunctions.Helpers
                                 recordId = val.recordId,
                                 data = new ResponseEntities.Data
                                 {
-                                    FlightData = "[" + flightInfo.ToJsonString() + "]",
+                                    FlightData = flightInfo == null ? null : "[" + flightInfo.ToJsonString() + "]",
                                     ThreatData = threatInfo == null ? null : threatInfo.ToJsonString()
                                 }
                             });
